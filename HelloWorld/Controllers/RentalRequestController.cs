@@ -372,21 +372,7 @@ namespace Rental.Controllers
             return RedirectToAction("UserRequests");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AdminReject(int requestId)
-        {
-            var request = await _context.RentalRequests.FindAsync(requestId);
-            if (request == null)
-            {
-                return NotFound();
-            }
 
-            request.RentalStatus = 3; // Rejected
-            await _context.SaveChangesAsync();
-
-            TempData["ErrorMessage"] = "Request rejected.";
-            return RedirectToAction("UserRequests");
-        }
         [HttpGet]
         public async Task<IActionResult> StartTransaction(int requestId)
         {
