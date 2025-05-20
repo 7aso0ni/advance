@@ -328,7 +328,8 @@ namespace Rental.Controllers
             // Return to the same page
             return RedirectToAction("UserRequests");
         }
-    
+        [HttpPost]
+        public async Task<IActionResult> AdminReject(int requestId)
         {
             var request = await _context.RentalRequests
                 .Include(r => r.User)
@@ -340,13 +341,13 @@ namespace Rental.Controllers
                 return NotFound();
             }
 
-            request.RentalStatus = 2; // Approved
+            request.RentalStatus = 3; // Rejected
             await _context.SaveChangesAsync();
             
             // Log the action
-            await SaveLogAsync("Admin Approve Rental Request", $"RequestID: {requestId} approved by admin", "Web");
+            await SaveLogAsync("Admin Reject Rental Request", $"RequestID: {requestId} rejected by admin", "Web");
             
-            // Send notification to the user about their approved request
+            // Send notification to the user about their rejected request
             if (request.User != null)
             {
                 try
