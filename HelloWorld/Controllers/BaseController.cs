@@ -80,6 +80,18 @@ namespace Rental.Controllers
                 await _context.SaveChangesAsync();
             }
         }
+        // Helper method to ensure text fits within database column limits
+        protected string TruncateText(string text, int maxLength = 50)
+        {
+            if (string.IsNullOrEmpty(text))
+                return string.Empty;
+                
+            if (text.Length <= maxLength)
+                return text;
+                
+            return text.Substring(0, maxLength - 3) + "...";
+        }
+        
         protected async Task SaveNotificationAsync(string title, string message, int notificationTypeId = 1, int? status = 0)
         {
             if (_context != null)
@@ -92,10 +104,13 @@ namespace Rental.Controllers
                 }
 
                 Console.WriteLine($"✅ Saving Notification for {user.Fname} {user.Lname}");
+                
+                // Ensure message doesn't exceed database column limit (50 chars)
+                string truncatedMessage = TruncateText(message, 50);
 
                 var notification = new Notification
                 {
-                    Message = message,
+                    Message = truncatedMessage,
                     DateTime = DateTime.UtcNow,
                     UserId = user.Id,
                     NotificationTypeId = notificationTypeId,

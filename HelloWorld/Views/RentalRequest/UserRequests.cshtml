@@ -39,7 +39,7 @@
                             @if (request.RentalStatus == 1)
                             {
                                 <!-- Pending -->
-                                <form asp-action="Approve" asp-controller="RentalRequest" method="post" style="display:inline;">
+                                <form asp-action="AdminApproveFixed" asp-controller="RentalRequest" method="post" style="display:inline;">
                                     <input type="hidden" name="requestId" value="@request.Id" />
                                     <button type="submit" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">Approve</button>
                                 </form>

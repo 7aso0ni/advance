@@ -42,6 +42,10 @@ namespace Rental.Controllers
 
             ViewBag.Search = search;
             ViewBag.Status = status;
+            
+            // Add categories for the filter dropdown
+            ViewBag.Categories = _context.Categories.ToList();
+            ViewBag.RentalStatuses = _context.RentalStatuses.ToList();
 
             return View(rentalHistory.ToList());
         }
@@ -283,74 +287,40 @@ namespace Rental.Controllers
         [HttpPost]
         public async Task<IActionResult> AdminApprove(int requestId)
         {
-            try
+            var request = await _context.RentalRequests
+                .Include(r => r.User)
+                .Include(r => r.Equipment)
+                .FirstOrDefaultAsync(r => r.Id == requestId);
+                
+            if (request == null)
             {
-                var request = await _context.RentalRequests
-                    .Include(r => r.User)
-                    .Include(r => r.Equipment)
-                    .FirstOrDefaultAsync(r => r.Id == requestId);
-                    
-                if (request == null)
-                {
-                    return NotFound();
-                }
+                return NotFound();
+            }
 
-                request.RentalStatus = 2; // Approved
+            request.RentalStatus = 2; // Approved
+            await _context.SaveChangesAsync();
+            
+            // Log the action
+            await SaveLogAsync("Admin Approve Rental Request", $"RequestID: {requestId} approved by admin", "Web");
+            
+            // Send notification to the user about their approved request
+            if (request.User != null)
+            {
+                var notification = new Notification
+                {
+                    UserId = request.UserId,
+                    Message = $"Your rental request for '{request.Equipment?.Name}' has been approved.",
+                    DateTime = DateTime.UtcNow,
+                    NotificationTypeId = 2, // Approval type
+                    Status = 0 // Unread
+                };
+                
+                _context.Notifications.Add(notification);
                 await _context.SaveChangesAsync();
-                
-                // Log the action
-                await SaveLogAsync("Admin Approve Rental Request", $"RequestID: {requestId} approved by admin", "Web");
-                
-                // Send notification to the user about their approved request
-                if (request.User != null)
-                {
-                    try
-                    {
-                        // Get equipment name and truncate if needed
-                        string equipName = request.Equipment?.Name ?? "item";
-                        if (equipName.Length > 15)
-                        {
-                            equipName = equipName.Substring(0, 12) + "...";
-                        }
-                        
-                        // Create a shorter message that will fit in the 50-character limit
-                        string message = $"Rental for '{equipName}' approved.";
-                        
-                        // Final check to ensure message doesn't exceed 50 chars
-                        if (message.Length > 50)
-                        {
-                            message = message.Substring(0, 47) + "...";
-                        }
-                        
-                        var notification = new Notification
-                        {
-                            UserId = request.UserId,
-                            Message = message,
-                            DateTime = DateTime.UtcNow,
-                            NotificationTypeId = 2, // Approval type
-                            Status = 0 // Unread
-                        };
-                        
-                        _context.Notifications.Add(notification);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (Exception ex)
-                    {
-                        // Log error but don't throw to user
-                        Console.WriteLine($"Error creating notification: {ex.Message}");
-                    }
-                }
+            }
 
-                TempData["SuccessMessage"] = "Request approved successfully.";
-                return RedirectToAction("UserRequests");
-            }
-            catch (Exception ex)
-            {
-                // Log error
-                Console.WriteLine($"Error in AdminApprove: {ex.Message}");
-                TempData["ErrorMessage"] = "An error occurred while approving the request.";
-                return RedirectToAction("UserRequests");
-            }
+            TempData["SuccessMessage"] = "Request approved successfully.";
+            return RedirectToAction("UserRequests");
         }
 
         [HttpPost]
@@ -504,44 +474,15 @@ namespace Rental.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PayTransactionConfirmed(int transactionId)
         {
-            try
-            {
-                // Load transaction
-                var transaction = await _context.RentalTransactions
-                    .FirstOrDefaultAsync(t => t.Id == transactionId);
-                    
-                if (transaction == null)
-                    return NotFound("Transaction not found.");
+            var transaction = await _context.RentalTransactions.FindAsync(transactionId);
+            if (transaction == null)
+                return NotFound("Transaction not found.");
 
-                // Update transaction payment status
-                transaction.PaymentStatus = 2; // Mark as paid
-                
-                // Find rental requests that reference this transaction by ID
-                var linkedRequests = await _context.RentalRequests
-                    .Where(r => r.RentalTransactionId == transactionId)
-                    .ToListAsync();
-                    
-                foreach (var request in linkedRequests)
-                {
-                    request.RentalStatus = 8; // Update to Completed (Paid) status
-                }
-                
-                // Save all changes
-                await _context.SaveChangesAsync();
-                
-                // Log the payment
-                await SaveLogAsync("Payment Completed", $"Transaction {transactionId} marked as paid.", "Web");
+            transaction.PaymentStatus = 2; // Mark as paid
+            await _context.SaveChangesAsync();
 
-                TempData["SuccessMessage"] = "Payment successful! Rental status has been updated.";
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                // Log error
-                Console.WriteLine($"Error in PayTransactionConfirmed: {ex.Message}");
-                TempData["ErrorMessage"] = "An error occurred while processing the payment.";
-                return RedirectToAction("Index");
-            }
+            TempData["SuccessMessage"] = "Payment successful!";
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult CreateByAdmin()
@@ -575,8 +516,34 @@ namespace Rental.Controllers
         }
 
 
+        // Helper method to create notifications with truncated messages
+        private async Task CreateRentalNotification(int userId, string message, int notificationType = 1)
+        {
+            try
+            {
+                // Ensure message doesn't exceed 50 characters (DB column limit)
+                if (message.Length > 50)
+                {
+                    message = message.Substring(0, 47) + "...";
+                }
 
+                var notification = new Notification
+                {
+                    UserId = userId,
+                    Message = message,
+                    DateTime = DateTime.UtcNow,
+                    NotificationTypeId = notificationType,
+                    Status = 0 // Unread
+                };
 
-
+                _context.Notifications.Add(notification);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                // Log error but don't throw exception to user
+                Console.WriteLine($"Error creating notification: {ex.Message}");
+            }
+        }
     }
 }
