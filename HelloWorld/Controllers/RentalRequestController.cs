@@ -509,15 +509,67 @@ namespace Rental.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PayTransactionConfirmed(int transactionId)
         {
-            var transaction = await _context.RentalTransactions.FindAsync(transactionId);
-            if (transaction == null)
-                return NotFound("Transaction not found.");
+            try
+            {
+                // Load transaction
+                var transaction = await _context.RentalTransactions
+                    .FirstOrDefaultAsync(t => t.Id == transactionId);
+                    
+                if (transaction == null)
+                    return NotFound("Transaction not found.");
 
-            transaction.PaymentStatus = 2; // Mark as paid
-            await _context.SaveChangesAsync();
+                // Update transaction payment status
+                transaction.PaymentStatus = 2; // Mark as paid
+                
+                // Find rental requests that reference this transaction by ID
+                var linkedRequests = await _context.RentalRequests
+                    .Where(r => r.RentalTransactionId == transactionId)
+                    .ToListAsync();
+                    
+                foreach (var request in linkedRequests)
+                {
+                    request.RentalStatus = 8; // Update to Completed (Paid) status
+                    
+                    // Record the return date in the database
+                    var returnRecord = new ReturnRecord
+                    {
+                        RentalRequestId = request.Id,
+                        ActualReturnDate = DateTime.Now,
+                        Condition = "Good", // Default condition
+                        Notes = "Returned after payment",
+                        UserId = request.UserId
+                    };
+                    
+                    _context.ReturnRecords.Add(returnRecord);
+                }
+                
+                // Save all changes
+                await _context.SaveChangesAsync();
+                
+                // Log the payment
+                await SaveLogAsync("Payment Completed", $"Transaction {transactionId} marked as paid with return records created.", "Web");
+                
+                // Send notification about payment completion
+                if (linkedRequests.Any())
+                {
+                    var userId = linkedRequests.First().UserId;
+                    await CreateRentalNotification(
+                        userId,
+                        "Your payment has been processed and return records have been created.",
+                        4 // Payment type
+                    );
+                }
 
-            TempData["SuccessMessage"] = "Payment successful!";
-            return RedirectToAction("Index");
+                TempData["SuccessMessage"] = "Payment successful! Return records have been created.";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                Console.WriteLine($"Error in PayTransactionConfirmed: {ex.Message}");
+                TempData["ErrorMessage"] = "An error occurred while processing the payment.";
+                return RedirectToAction("Index");
+            }
         }
         [HttpGet]
         public IActionResult CreateByAdmin()
