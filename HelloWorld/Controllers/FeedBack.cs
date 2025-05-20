@@ -9,7 +9,15 @@ namespace Rental.Controllers
 {
     public class FeedBackController : BaseController
     {
-        public FeedBackController(ClassLibrary.Persistence.DBContext context) : base(context) { }
+        public FeedBackController(ClassLibrary.Persistence.DBContext context) : base(context) 
+        { 
+            // Initialize feedback visibility for all existing feedback if dictionary is empty
+            if (FeedbackVisibility.Count == 0)
+            {
+                InitializeFeedbackVisibility();
+            }
+        }
+        
         private static Dictionary<int, bool> FeedbackVisibility = new();
 
         [HttpPost]
@@ -58,17 +66,37 @@ namespace Rental.Controllers
                     TempData["ErrorMessage"] = "You do not have permission to manage feedback visibility.";
                     return RedirectToAction("Index", "Home");
                 }
+                
+                // Check if the feedback exists
+                var feedback = _context.FeedBacks.Find(id);
+                if (feedback == null)
+                {
+                    TempData["ErrorMessage"] = "Feedback not found.";
+                    return RedirectToAction("ManageFeedback");
+                }
 
+                // Toggle visibility
                 if (FeedbackVisibility.ContainsKey(id))
                     FeedbackVisibility[id] = !FeedbackVisibility[id];
                 else
                     FeedbackVisibility[id] = false; // Hide by default if missing
 
+                // Get the current state after toggling
+                bool isVisible = FeedbackVisibility[id];
+                
                 // Log the action
-                string action = FeedbackVisibility[id] ? "showed" : "hid";
+                string action = isVisible ? "showed" : "hid";
                 _ = SaveLogAsync($"{action} feedback", $"Feedback ID: {id}", "Web");
 
-                TempData["SuccessMessage"] = "Feedback visibility updated.";
+                // Provide clear feedback to the user about what happened
+                TempData["SuccessMessage"] = $"Feedback #{id} is now {(isVisible ? "visible" : "hidden")}.";
+                
+                // Get the equipment ID to redirect back to the correct page if needed
+                var equipmentId = feedback.Equipment;
+                
+                // Store the current visibility state in TempData for debugging
+                TempData["DebugInfo"] = $"Feedback #{id} visibility set to {isVisible}. Dictionary now has {FeedbackVisibility.Count} items.";
+                
                 return RedirectToAction("ManageFeedback");
             }
             catch (Exception ex)
@@ -110,6 +138,29 @@ namespace Rental.Controllers
             }
         }
         
+        // Initialize feedback visibility dictionary with all existing feedback
+        private void InitializeFeedbackVisibility()
+        {
+            try
+            {
+                var allFeedback = _context.FeedBacks.ToList();
+                foreach (var feedback in allFeedback)
+                {
+                    if (!FeedbackVisibility.ContainsKey(feedback.Id))
+                    {
+                        // Default all feedback to visible
+                        FeedbackVisibility[feedback.Id] = true;
+                    }
+                }
+                
+                Console.WriteLine($"Initialized visibility for {allFeedback.Count} feedback items");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error initializing feedback visibility: {ex.Message}");
+            }
+        }
+        
         // Get visible feedback for equipment details page
         public List<FeedBack> GetVisibleFeedback(List<FeedBack> allFeedback, User currentUser = null)
         {
@@ -122,9 +173,17 @@ namespace Rental.Controllers
                 return allFeedback;
             }
             
+            // Make sure all feedback items have visibility settings
+            foreach (var feedback in allFeedback)
+            {
+                if (!FeedbackVisibility.ContainsKey(feedback.Id))
+                {
+                    FeedbackVisibility[feedback.Id] = true; // Default to visible
+                }
+            }
+            
             // For regular users, only show visible feedback
-            return allFeedback.Where(f => 
-                FeedbackVisibility.ContainsKey(f.Id) && FeedbackVisibility[f.Id]).ToList();
+            return allFeedback.Where(f => FeedbackVisibility[f.Id]).ToList();
         }
     }
 }
