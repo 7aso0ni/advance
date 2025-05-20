@@ -1,0 +1,50 @@
+﻿@model List<Rental.Models.MyRentals>
+
+@{
+    ViewData["Title"] = "My Rental History";
+}
+
+<section class="container mx-auto py-16">
+    <h2 class="text-4xl font-bold text-center mb-8">My Rental History</h2>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+            <table class="w-full border-collapse border border-gray-300">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="px-6 py-3 border-b">Rental ID</th>
+                        <th class="px-6 py-3 border-b">Equipment Name</th>
+                        <th class="px-6 py-3 border-b">Start Date</th>
+                        <th class="px-6 py-3 border-b">Return Date</th>
+                        <th class="px-6 py-3 border-b">Cost</th>
+                        <th class="px-6 py-3 border-b">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var rental in Model)
+                    {
+                        <tr class="border-b hover:bg-gray-100">
+                            <td class="px-6 py-4">@rental.Id</td>
+                            <td class="px-6 py-4">@rental.EquipmentName</td>
+                            <td class="px-6 py-4">@rental.StartDate.ToShortDateString()</td>
+                            <td class="px-6 py-4">@rental.ReturnDate.ToShortDateString()</td>
+                            <td class="px-6 py-4">$@rental.Cost</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 rounded-lg text-white
+                                    @(rental.RentalStatus == "Pending" ? "bg-yellow-500" :
+                                      rental.RentalStatus == "Approved" ? "bg-green-500" : "bg-red-500")">
+                                    @rental.RentalStatus
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p class="text-center text-gray-500 text-lg">No rental history found.</p>
+    }
+</section>

@@ -1,0 +1,107 @@
+﻿@model ClassLibrary.Models.RentalRequest
+
+@{
+    ViewData["Title"] = "Start Rental Transaction";
+    var equipment = ViewBag.Equipment as ClassLibrary.Models.Equipment;
+    var requestId = ViewBag.RequestId as int? ?? 0;
+}
+
+<section class="container mx-auto py-10 max-w-xl">
+    <h2 class="text-3xl font-bold mb-6">Create Transaction for @equipment?.Name</h2>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="bg-red-100 text-red-700 p-3 mb-4 rounded">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <form asp-action="SaveTransaction" asp-controller="RentalRequest" method="post" enctype="multipart/form-data" onsubmit="return validateDates()">
+        <input type="hidden" name="requestId" value="@requestId" />
+
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Pickup Date</label>
+            <input type="date" name="pickup" id="pickupDate" class="w-full border rounded px-3 py-2" required />
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Return Date</label>
+            <input type="date" name="returnDate" id="returnDate" class="w-full border rounded px-3 py-2" required />
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">ID Proof (PDF/JPG)</label>
+            <input type="file" name="idProof" accept=".pdf,.jpg,.jpeg,.png" class="w-full border rounded px-3 py-2" required />
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Days</label>
+            <input type="text" id="days" class="w-full border rounded px-3 py-2 bg-gray-100" readonly />
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Fee (calculated)</label>
+            <input type="text" id="fee" class="w-full border rounded px-3 py-2 bg-gray-100" readonly />
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Deposit (1 day of use)</label>
+            <input type="text" id="deposit" class="w-full border rounded px-3 py-2 bg-gray-100" readonly />
+        </div>
+
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded">
+            Submit Transaction
+        </button>
+    </form>
+
+    @section Scripts {
+        <script>
+            const pricePerDay = @equipment?.Price ?? 0;
+
+            function validateDates() {
+                const pickup = new Date(document.getElementById("pickupDate").value);
+                const returnDate = new Date(document.getElementById("returnDate").value);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                if (pickup < today) {
+                    alert("Pickup date must be today or later.");
+                    return false;
+                }
+
+                if (returnDate <= pickup) {
+                    alert("Return date must be after pickup date.");
+                    return false;
+                }
+
+                return true;
+            }
+
+            function calculateTransaction() {
+                const pickupInput = document.getElementById("pickupDate");
+                const returnInput = document.getElementById("returnDate");
+
+                const pickup = new Date(pickupInput.value);
+                const returnDate = new Date(returnInput.value);
+
+                if (!pickupInput.value || !returnInput.value || returnDate <= pickup) {
+                    document.getElementById("days").value = "";
+                    document.getElementById("fee").value = "";
+                    document.getElementById("deposit").value = "";
+                    return;
+                }
+
+                const diffTime = returnDate - pickup;
+                const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                const fee = days * pricePerDay;
+                const deposit = pricePerDay;
+
+                document.getElementById("days").value = days;
+                document.getElementById("fee").value = "$" + fee.toFixed(2);
+                document.getElementById("deposit").value = "$" + deposit.toFixed(2);
+            }
+
+            document.getElementById("pickupDate").addEventListener("change", calculateTransaction);
+            document.getElementById("returnDate").addEventListener("change", calculateTransaction);
+        </script>
+    }

@@ -1,0 +1,43 @@
+﻿@model List<ClassLibrary.Models.Log>
+
+@{
+    ViewData["Title"] = "System Logs";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">System Logs</h2>
+
+    <form method="get" asp-controller="Logs" asp-action="Index" class="flex flex-wrap gap-4 mb-6">
+        <input type="text" name="actionFilter" placeholder="Search by Action" class="border px-4 py-2 rounded-lg w-full md:w-1/4" />
+        <input type="text" name="userFilter" placeholder="Search by User Email" class="border px-4 py-2 rounded-lg w-full md:w-1/4" />
+        <input type="date" name="startDate" class="border px-4 py-2 rounded-lg w-full md:w-1/6" />
+        <input type="date" name="endDate" class="border px-4 py-2 rounded-lg w-full md:w-1/6" />
+        <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg w-full md:w-auto">Filter</button>
+    </form>
+
+    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+        <table class="min-w-full table-auto">
+            <thead class="bg-gray-100 text-gray-600 text-sm">
+                <tr>
+                    <th class="px-6 py-3 text-left">User</th>
+                    <th class="px-6 py-3 text-left">Action</th>
+                    <th class="px-6 py-3 text-left">Affected Data</th>
+                    <th class="px-6 py-3 text-left">Source</th>
+                    <th class="px-6 py-3 text-left">Timestamp</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-700">
+                @foreach (var log in Model)
+                {
+                    <tr class="border-b">
+                        <td class="px-6 py-4">@log.User.Email</td>
+                        <td class="px-6 py-4">@log.Action</td>
+                        <td class="px-6 py-4">@log.AffectedData</td>
+                        <td class="px-6 py-4">@log.Source</td>
+                        <td class="px-6 py-4">@log.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

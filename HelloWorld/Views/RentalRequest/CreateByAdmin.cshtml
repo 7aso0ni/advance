@@ -1,0 +1,54 @@
+﻿@model ClassLibrary.Models.RentalRequest
+@{
+    ViewData["Title"] = "Create Rental Request";
+    var users = ViewBag.Users as List<ClassLibrary.Models.User>;
+    var equipmentList = ViewBag.Equipment as List<ClassLibrary.Models.Equipment>;
+}
+
+<section class="max-w-2xl mx-auto py-10">
+    <h2 class="text-2xl font-bold mb-6">Create Rental Request (Admin)</h2>
+
+    <form asp-action="CreateByAdmin" asp-controller="RentalRequest" method="post">
+        @Html.AntiForgeryToken()
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">User</label>
+            <select name="UserId" class="w-full border px-3 py-2 rounded" required>
+                <option value="">-- Select User --</option>
+                @foreach (var user in users)
+                {
+                    <option value="@user.Id">@user.Fname @user.Lname</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Equipment</label>
+            <select name="EquipmentId" class="w-full border px-3 py-2 rounded" required>
+                <option value="">-- Select Equipment --</option>
+                @foreach (var equip in equipmentList)
+                {
+                    <option value="@equip.Id">@equip.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Start Date</label>
+            <input type="date" name="StartDate" class="w-full border px-3 py-2 rounded" required />
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Return Date</label>
+            <input type="date" name="ReturnDate" class="w-full border px-3 py-2 rounded" required />
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Cost</label>
+            <input type="number" name="Cost" step="0.01" class="w-full border px-3 py-2 rounded" required />
+        </div>
+
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+            Submit Request
+        </button>
+    </form>
+</section>

@@ -1,0 +1,187 @@
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\bin\Debug\net8.0\ClassLibrary.deps.json
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\bin\Debug\net8.0\ClassLibrary.runtimeconfig.json
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\bin\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.AssemblyReference.cache
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\obj\Debug\net8.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfoInputs.cache
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfo.cs
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\obj\Debug\net8.0\ClassLibrary.dll
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\obj\Debug\net8.0\refint\ClassLibrary.dll
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\obj\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\obj\Debug\net8.0\ClassLibrary.genruntimeconfig.cache
+C:\Users\Gaming\Documents\HelloWorld\ClassLibrary\obj\Debug\net8.0\ref\ClassLibrary.dll
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.deps.json
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.runtimeconfig.json
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.AssemblyReference.cache
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfoInputs.cache
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfo.cs
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.sourcelink.json
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.dll
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\refint\ClassLibrary.dll
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.genruntimeconfig.cache
+C:\Users\Gaming\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ref\ClassLibrary.dll
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.deps.json
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.runtimeconfig.json
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.AssemblyReference.cache
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfoInputs.cache
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfo.cs
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.sourcelink.json
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.dll
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\refint\ClassLibrary.dll
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.genruntimeconfig.cache
+C:\Users\Hussa\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ref\ClassLibrary.dll
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.deps.json
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.runtimeconfig.json
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.AssemblyReference.cache
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfoInputs.cache
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfo.cs
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.sourcelink.json
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.dll
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\refint\ClassLibrary.dll
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.genruntimeconfig.cache
+C:\Users\Gaming\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ref\ClassLibrary.dll
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.deps.json
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.runtimeconfig.json
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.AssemblyReference.cache
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfoInputs.cache
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfo.cs
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.sourcelink.json
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.dll
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\refint\ClassLibrary.dll
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.genruntimeconfig.cache
+C:\Users\Dell\Desktop\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ref\ClassLibrary.dll
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.deps.json
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.runtimeconfig.json
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.AssemblyReference.cache
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfoInputs.cache
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfo.cs
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.sourcelink.json
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.dll
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\refint\ClassLibrary.dll
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.genruntimeconfig.cache
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ref\ClassLibrary.dll
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\bin\Debug\net8.0\SeedImages\camera.jfif
+C:\Users\Dell\Documents\AdvancedProject\ClassLibrary\bin\Debug\net8.0\SeedImages\camera1.jpg
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\bin\Debug\net8.0\SeedImages\camera.jfif
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\bin\Debug\net8.0\SeedImages\camera1.jpg
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.deps.json
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.runtimeconfig.json
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.AssemblyReference.cache
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfoInputs.cache
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfo.cs
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.sourcelink.json
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.dll
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\obj\Debug\net8.0\refint\ClassLibrary.dll
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.genruntimeconfig.cache
+C:\Users\Gaming\Downloads\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ref\ClassLibrary.dll
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\bin\Debug\net8.0\SeedImages\camera.jfif
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\bin\Debug\net8.0\SeedImages\camera1.jpg
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.deps.json
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.runtimeconfig.json
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.AssemblyReference.cache
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfoInputs.cache
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfo.cs
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.sourcelink.json
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.dll
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\obj\Debug\net8.0\refint\ClassLibrary.dll
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.genruntimeconfig.cache
+C:\Users\Sharmin\Desktop\FINALaP\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ref\ClassLibrary.dll
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\SeedImages\camera.jfif
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\SeedImages\camera1.jpg
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.deps.json
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.runtimeconfig.json
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.AssemblyReference.cache
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfoInputs.cache
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfo.cs
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.sourcelink.json
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.dll
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\refint\ClassLibrary.dll
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.pdb
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.genruntimeconfig.cache
+C:\Users\Gaming\Downloads\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ref\ClassLibrary.dll
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.deps.json
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.runtimeconfig.json
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.pdb
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.AssemblyReference.cache
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfoInputs.cache
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfo.cs
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.CoreCompileInputs.cache
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.sourcelink.json
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.dll
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\refint\ClassLibrary.dll
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.pdb
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.genruntimeconfig.cache
+D:\Downloads\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ref\ClassLibrary.dll
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.deps.json
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.runtimeconfig.json
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.pdb
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.AssemblyReference.cache
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfoInputs.cache
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfo.cs
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.CoreCompileInputs.cache
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.sourcelink.json
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.dll
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\refint\ClassLibrary.dll
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.pdb
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.genruntimeconfig.cache
+D:\Downloads\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ref\ClassLibrary.dll
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.deps.json
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.runtimeconfig.json
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\bin\Debug\net8.0\ClassLibrary.pdb
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.AssemblyReference.cache
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfoInputs.cache
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.AssemblyInfo.cs
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.csproj.CoreCompileInputs.cache
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.sourcelink.json
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.dll
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\refint\ClassLibrary.dll
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.pdb
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ClassLibrary.genruntimeconfig.cache
+D:\Downloads\AdvancedProject (2) (2) (1)\AdvancedProject (2) (2)\AdvancedProject (2)\AdvancedProject\AdvancedProject\ClassLibrary\obj\Debug\net8.0\ref\ClassLibrary.dll

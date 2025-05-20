@@ -1,0 +1,121 @@
+﻿@model List<ClassLibrary.Models.User>
+
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Manage Users</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4 text-center">
+            @TempData["Success"]
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="bg-red-100 text-red-800 px-4 py-2 rounded mb-4 text-center">
+            @TempData["Error"]
+        </div>
+    }
+
+    <table class="min-w-full bg-white rounded-lg overflow-hidden shadow">
+        <thead class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+            <tr>
+                <th class="py-3 px-6 text-left">Name</th>
+                <th class="py-3 px-6 text-left">Email</th>
+                <th class="py-3 px-6 text-left">Role</th>
+                <th class="py-3 px-6 text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700 text-sm">
+            @foreach (var user in Model)
+            {
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                    <td class="py-3 px-6">@user.Fname @user.Lname</td>
+                    <td class="py-3 px-6">@user.Email</td>
+                    <td class="py-3 px-6">@user.Role.Role</td>
+                    <td class="py-3 px-6 text-center">
+
+                        <!-- Change Password Button -->
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded mb-1"
+                                onclick="togglePasswordForm(@user.Id)">
+                            Change Password
+                        </button>
+
+                        <!-- Hidden Password Form -->
+                        <div id="passwordForm-@user.Id" class="hidden mt-2">
+                            <form asp-controller="UserManagement" asp-action="UpdatePassword" method="post"
+                                  class="flex flex-col sm:flex-row items-center justify-center gap-2 mt-2">
+                                <input type="hidden" name="id" value="@user.Id" />
+                                <input type="password" name="newPassword" placeholder="New Password"
+                                       class="border rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                       required />
+                                <button type="submit"
+                                        class="bg-orange-500 text-white px-4 py-1 rounded hover:bg-orange-600">
+                                    Save
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Document Management -->
+                        <div class="mt-3">
+                            <button onclick="toggleDocs(@user.Id)"
+                                    class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded hover:bg-gray-300">
+                                Toggle Documents
+                            </button>
+
+                            <div id="docList-@user.Id" class="hidden mt-2 text-left bg-gray-50 p-2 border rounded">
+                                @if (user.Documents != null && user.Documents.Any())
+                                {
+                                    <ul class="space-y-1 text-sm">
+                                        @foreach (var doc in user.Documents)
+                                        {
+                                            <li class="flex justify-between items-center">
+                                                <span>@doc.DocumentTypeNavigation?.Name</span>
+                                                <div class="flex gap-2">
+                                                    <a asp-controller="UserManagement"
+                                                       asp-action="DownloadDocument"
+                                                       asp-route-id="@doc.Id"
+                                                       class="text-blue-600 hover:underline">Download</a>
+
+                                                    <form asp-controller="UserManagement"
+                                                          asp-action="DeleteDocument"
+                                                          asp-route-id="@doc.Id"
+                                                          method="post"
+                                                          onsubmit="return confirm('Are you sure you want to delete this document?');">
+                                                        <button type="submit" class="text-red-600 hover:underline">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <span class="text-gray-500 italic">No documents uploaded.</span>
+                                }
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        function togglePasswordForm(id) {
+            const form = document.getElementById(`passwordForm-${id}`);
+            form.classList.toggle('hidden');
+        }
+
+        function toggleDocs(id) {
+            const docSection = document.getElementById(`docList-${id}`);
+            docSection.classList.toggle('hidden');
+        }
+    </script>
+}

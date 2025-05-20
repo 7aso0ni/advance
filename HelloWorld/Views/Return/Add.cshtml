@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Add Return Record";
+    var equipmentList = ViewBag.EquipmentList as List<ClassLibrary.Models.Equipment>;
+    var conditionList = ViewBag.ConditionList as List<ClassLibrary.Models.ConditionStatus>;
+    var users = ViewBag.Users as List<ClassLibrary.Models.User>;
+}
+
+<h2 class="text-2xl font-bold mb-6">Add Return Record</h2>
+
+<form asp-action="Add" method="post" class="space-y-4">
+    <div>
+        <label for="userId" class="block font-semibold">User</label>
+        <select name="userId" class="border rounded px-3 py-2 w-full" required>
+            <option value="">Select User</option>
+            @foreach (var user in users)
+            {
+                <option value="@user.Id">@user.Fname @user.Lname</option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label for="equipmentId" class="block font-semibold">Equipment</label>
+        <select name="equipmentId" class="border rounded px-3 py-2 w-full" required>
+            <option value="">Select Equipment</option>
+            @foreach (var eq in equipmentList)
+            {
+                <option value="@eq.Id">@eq.Name</option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label for="conditionId" class="block font-semibold">Condition</label>
+        <select name="conditionId" class="border rounded px-3 py-2 w-full" required>
+            <option value="">Select Condition</option>
+            @foreach (var cond in conditionList)
+            {
+                <option value="@cond.Id">@cond.Status</option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label for="returnDate" class="block font-semibold">Return Date</label>
+        <input type="date" name="returnDate" class="border rounded px-3 py-2 w-full" required />
+    </div>
+
+    <div>
+        <label for="lateFee" class="block font-semibold">Late Fee (if any)</label>
+        <input type="number" name="lateFee" step="0.01" class="border rounded px-3 py-2 w-full" value="0" />
+    </div>
+
+    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Add Record</button>
+</form>

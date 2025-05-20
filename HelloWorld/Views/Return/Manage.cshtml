@@ -1,0 +1,129 @@
+﻿@model List<ClassLibrary.Models.RentalRequest>
+@using ClassLibrary.Models
+
+@{
+    var conditions = ViewBag.Conditions as List<ConditionStatus>;
+    var selectedStatus = ViewBag.SelectedStatus as int? ?? 0;
+    var search = ViewBag.Search as string ?? "";
+
+}
+
+<h2 class="text-2xl font-bold mb-4">Return Management</h2>
+
+<form method="get" asp-action="Manage" class="mb-6 flex flex-wrap gap-4 items-center">
+    <input type="text" name="search" value="@search" placeholder="Search by equipment or user" class="border px-3 py-2 rounded" />
+
+    <select name="status" class="border px-3 py-2 rounded">
+        <option value="0" selected="@(selectedStatus == 0)">All Statuses</option>
+        <option value="6" selected="@(selectedStatus == 6)">Returned</option>
+        <option value="7" selected="@(selectedStatus == 7)">Overdue</option>
+    </select>
+
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Filter</button>
+</form>
+
+    // <a asp-action="Add" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded mb-4 inline-block">
+    //     + Add Return Record
+    // </a>
+
+
+<table class="table-auto w-full border">
+    <thead>
+        <tr class="bg-gray-200">
+            <th>User</th>
+            <th>Equipment</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="row-@item.Id">
+                <td>@item.User?.Fname @item.User?.Lname</td>
+                <td>@item.Equipment?.Name</td>
+                <td>@item.ReturnDate.ToShortDateString()</td>
+                <td>@item.RentalStatus1?.Status</td>
+                <td>
+                    @{
+                        bool isOverdue = item.ReturnDate < DateTime.Now;
+                        bool isMarked = item.RentalStatus == 6 || item.RentalStatus == 7;
+                    }
+
+                    @if (isMarked)
+                    {
+                        <div class="flex items-center gap-2">
+                            <form asp-action="Unmark" method="post" onsubmit="return confirm('Are you sure you want to unmark this return?');">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button class="text-red-600 hover:text-red-800" title="Unmark">Unmark</button>
+                            </form>
+
+                            <button onclick="toggleEdit(@item.Id)" class="text-blue-600 hover:text-blue-800" title="Edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 30 30">
+                                    <path d="M24 11l2.414-2.414c.781-.781.781-2.047 0-2.828l-2.172-2.172c-.781-.781-2.047-.781-2.828 0L19 6 24 11zM17 8L5.26 19.74C7.886 19.427 6.03 21.933 7 23c.854.939 3.529-.732 3.26 1.74L22 13 17 8zM4.328 26.944l-.015-.007c-.605.214-1.527-.265-1.25-1.25l-.007-.015L4 23l3 3L4.328 26.944z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="edit-panel-@item.Id" class="mt-2 hidden">
+                            <form asp-action="MarkReturned" method="post">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <select name="conditionId" class="border px-2 py-1 rounded">
+                                    @foreach (var cond in conditions)
+                                    {
+                                        <option value="@cond.Id">@cond.Status</option>
+                                    }
+                                </select>
+                                <button class="bg-green-500 text-white px-3 py-1 rounded">Update</button>
+                                <button type="button" onclick="toggleEdit(@item.Id)" class="bg-gray-300 px-3 py-1 rounded ml-2">Cancel</button>
+                            </form>
+                        </div>
+                    }
+                    else if (!isOverdue)
+                    {
+                        <form asp-action="MarkReturned" method="post" class="inline" onsubmit="removeRow(@item.Id)">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <select name="conditionId" class="border px-2 py-1 rounded">
+                                @foreach (var cond in conditions)
+                                {
+                                    <option value="@cond.Id">@cond.Status</option>
+                                }
+                            </select>
+                            <button class="bg-green-500 text-white px-2 py-1 rounded ml-1">Mark Returned</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-action="MarkOverdue" method="post" class="inline" onsubmit="removeRow(@item.Id)">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <input type="number" name="lateFee" placeholder="Late Fee" required class="w-24 border px-2 py-1 rounded" />
+                            <select name="conditionId" class="border px-2 py-1 rounded ml-1">
+                                @foreach (var cond in conditions)
+                                {
+                                    <option value="@cond.Id">@cond.Status</option>
+                                }
+                            </select>
+                            <button class="bg-red-500 text-white px-2 py-1 rounded ml-1">Mark Overdue</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        function removeRow(id) {
+            setTimeout(() => {
+                const row = document.getElementById("row-" + id);
+                if (row) row.remove();
+            }, 150);
+        }
+
+        function toggleEdit(id) {
+            const panel = document.getElementById("edit-panel-" + id);
+            if (panel) panel.classList.toggle("hidden");
+        }
+    </script>
+}

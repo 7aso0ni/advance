@@ -1,0 +1,32 @@
+﻿@model List<ClassLibrary.Models.ReturnRecord>
+
+<h2 class="text-2xl font-bold mb-4">My Return Records</h2>
+
+@if (!Model.Any())
+{
+    <p class="text-center text-gray-500">No return records found.</p>
+}
+else
+{
+    <table class="table-auto w-full border">
+        <thead>
+            <tr class="bg-gray-200">
+                <th>Equipment</th>
+                <th>Return Date</th>
+                <th>Condition</th>
+                <th>Late Fee</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.EquipmentNavigation.Name</td>
+                    <td>@item.ReturnDate.ToShortDateString()</td>
+                    <td>@item.ConditionNavigation.Status</td>
+                    <td>@(item.LateFees.HasValue ? $"${item.LateFees}" : "-")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

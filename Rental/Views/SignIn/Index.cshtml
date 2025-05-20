@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Sign In";
+    Layout = null;
+}
+
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-md w-full space-y-8 bg-white p-10 rounded-lg shadow-md">
+        <h2 class="text-center text-3xl font-extrabold text-gray-900">Sign In</h2>
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="bg-green-100 text-green-800 p-3 rounded mb-4">
+                @ViewBag.Message
+            </div>
+        }
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="bg-red-100 text-red-800 p-3 rounded mb-4">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+
+        <form class="mt-8 space-y-6" method="post" action="/Signin/SignIn">
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700">Email</label>
+                <input id="username" name="username" type="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500" />
+            </div>
+
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input id="password" name="password" type="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500" />
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="w-full py-2 px-4 bg-orange-500 hover:bg-orange-600 text-white rounded-md">Sign In</button>
+            </div>
+        </form>
+
+        <div class="text-center mt-4">
+            <p class="text-sm text-gray-600">Don't have an account? <a href="/SignUp" class="text-orange-500 hover:text-orange-600">Create Account</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script> 

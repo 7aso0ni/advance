@@ -1,0 +1,67 @@
+﻿@model List<ClassLibrary.Models.RentalRequest>
+
+@{
+    ViewData["Title"] = "Manage User Requests";
+}
+<div class="mb-6">
+    <a href="@Url.Action("CreateByAdmin", "RentalRequest")" class="btn">+ Add Rental Request</a>
+
+</div>
+
+<section class="container mx-auto py-8">
+    <h2 class="text-3xl font-bold mb-6">Manage Rental Requests</h2>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <table class="min-w-full border border-gray-300">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="border px-4 py-2">User</th>
+                    <th class="border px-4 py-2">Equipment</th>
+                    <th class="border px-4 py-2">Start Date</th>
+                    <th class="border px-4 py-2">Return Date</th>
+                    <th class="border px-4 py-2">Cost</th>
+                    <th class="border px-4 py-2">Status</th>
+                    <th class="border px-4 py-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var request in Model)
+                {
+                    <tr class="border-t">
+                        <td class="border px-4 py-2">@request.User?.Fname @request.User?.Lname</td>
+                        <td class="border px-4 py-2">@request.Equipment?.Name</td>
+                        <td class="border px-4 py-2">@request.StartDate.ToShortDateString()</td>
+                        <td class="border px-4 py-2">@request.ReturnDate.ToShortDateString()</td>
+                        <td class="border px-4 py-2">$@request.Cost</td>
+                        <td class="border px-4 py-2">@request.RentalStatus1?.Status</td>
+                        <td class="border px-4 py-2 space-x-2">
+                            @if (request.RentalStatus == 1)
+                            {
+                                <!-- Pending -->
+                                <form asp-action="Approve" asp-controller="RentalRequest" method="post" style="display:inline;">
+                                    <input type="hidden" name="requestId" value="@request.Id" />
+                                    <button type="submit" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">Approve</button>
+                                </form>
+
+                                <form asp-action="Reject" asp-controller="RentalRequest" method="post" style="display:inline;">
+                                    <input type="hidden" name="requestId" value="@request.Id" />
+                                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Reject</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <span class="text-gray-500">No Actions</span>
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No rental requests found.</p>
+    }
+</section>

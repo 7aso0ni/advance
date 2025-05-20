@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\AddEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\CreateRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\EditEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\EquipmentManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\AuditLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\CreateTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DatabaseBackup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\GenerateReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\LogsFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\RentalRequestFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\RentalTransactionFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\ReturnRecordFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UpdateRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UpdateRentalRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UpdateTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\RentalRequests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\RentalTransactions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\ReturnRecords.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
