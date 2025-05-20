@@ -287,6 +287,49 @@ namespace Rental.Controllers
         [HttpPost]
         public async Task<IActionResult> AdminApprove(int requestId)
         {
+            try
+            {
+                var request = await _context.RentalRequests
+                    .Include(r => r.User)
+                    .Include(r => r.Equipment)
+                    .FirstOrDefaultAsync(r => r.Id == requestId);
+                    
+                if (request == null)
+                {
+                    return NotFound();
+                }
+
+                request.RentalStatus = 2; // Approved
+                await _context.SaveChangesAsync();
+                
+                // Log the action
+                await SaveLogAsync("Admin Approve Rental Request", $"RequestID: {requestId} approved by admin", "Web");
+                
+                // Send notification to the user about their approved request
+                if (request.User != null)
+                {
+                    // Create a notification with a properly truncated message
+                    await CreateRentalNotification(
+                        request.UserId,
+                        $"Your rental request for '{request.Equipment?.Name}' has been approved.",
+                        2 // Approval type
+                    );
+                }
+
+                TempData["SuccessMessage"] = "Request approved successfully.";
+            }
+            catch (Exception ex)
+            {
+                // Log error but don't show to user
+                Console.WriteLine($"Error in AdminApprove: {ex.Message}");
+                TempData["ErrorMessage"] = "An error occurred while approving the request.";
+            }
+            
+            // Return to the same page
+            return RedirectToAction("UserRequests");
+        }
+    
+        {
             var request = await _context.RentalRequests
                 .Include(r => r.User)
                 .Include(r => r.Equipment)
@@ -306,20 +349,25 @@ namespace Rental.Controllers
             // Send notification to the user about their approved request
             if (request.User != null)
             {
-                var notification = new Notification
+                try
                 {
-                    UserId = request.UserId,
-                    Message = $"Your rental request for '{request.Equipment?.Name}' has been approved.",
-                    DateTime = DateTime.UtcNow,
-                    NotificationTypeId = 2, // Approval type
-                    Status = 0 // Unread
-                };
-                
-                _context.Notifications.Add(notification);
-                await _context.SaveChangesAsync();
+                    // Create a notification with a properly truncated message
+                    await CreateRentalNotification(
+                        request.UserId,
+                        $"Your rental request for '{request.Equipment?.Name}' has been approved.",
+                        2 // Approval type
+                    );
+                }
+                catch (Exception ex)
+                {
+                    // Log error but don't show to user
+                    Console.WriteLine($"Error creating notification: {ex.Message}");
+                }
             }
 
             TempData["SuccessMessage"] = "Request approved successfully.";
+            
+            // Return to the same page without redirecting
             return RedirectToAction("UserRequests");
         }
 
