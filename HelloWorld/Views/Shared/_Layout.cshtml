@@ -1,4 +1,4 @@
-﻿@{
+@{
     var user = ViewBag.User as ClassLibrary.Models.User;
 }
 <!DOCTYPE html>
@@ -46,6 +46,17 @@
 
             </div>
 
+            <!-- Notification Icon -->
+            @if (ViewBag.IsAuthenticated == true)
+            {
+                <div class="relative mr-4">
+                    <a href="@Url.Action("Index", "Notifications")" class="text-gray-600 hover:text-orange-500">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span id="notification-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </a>
+                </div>
+            }
+
             <!-- Profile Dropdown (Right) -->
             @if (ViewBag.IsAuthenticated == true)
             {
@@ -90,6 +101,44 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    @if (ViewBag.IsAuthenticated == true)
+    {
+        <script>
+            // Function to update notification count
+            function updateNotificationCount() {
+                $.ajax({
+                    url: '@Url.Action("GetUnreadCount", "Notifications")',
+                    type: 'GET',
+                    success: function(data) {
+                        const countElement = document.getElementById('notification-count');
+                        if (countElement) {
+                            countElement.textContent = data.count;
+                            
+                            // Hide the count badge if zero
+                            if (data.count === 0) {
+                                countElement.style.display = 'none';
+                            } else {
+                                countElement.style.display = 'flex';
+                            }
+                        }
+                    },
+                    error: function(error) {
+                        console.error('Error fetching notification count:', error);
+                    }
+                });
+            }
+            
+            // Update count on page load
+            $(document).ready(function() {
+                updateNotificationCount();
+                
+                // Refresh notification count every 30 seconds
+                setInterval(updateNotificationCount, 30000);
+            });
+        </script>
+    }
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

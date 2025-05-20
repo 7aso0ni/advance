@@ -1,4 +1,4 @@
-﻿using ClassLibrary.Models;
+using ClassLibrary.Models;
 using ClassLibrary.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -139,7 +139,11 @@ namespace Rental.Controllers
         [HttpPost]
         public async Task<IActionResult> Approve(int requestId)
         {
-            var request = await _context.RentalRequests.FindAsync(requestId);
+            var request = await _context.RentalRequests
+                .Include(r => r.User)
+                .Include(r => r.Equipment)
+                .FirstOrDefaultAsync(r => r.Id == requestId);
+                
             if (request == null) return NotFound("Rental request not found.");
 
             request.RentalStatus = 2; // Approved
@@ -147,6 +151,22 @@ namespace Rental.Controllers
 
             // ✅ Log action
             await SaveLogAsync("Approve Rental Request", $"RequestID: {requestId} approved", "Web");
+            
+            // Send notification to the user about their approved request
+            if (request.User != null)
+            {
+                var notification = new Notification
+                {
+                    UserId = request.UserId,
+                    Message = $"Your rental request for '{request.Equipment?.Name}' has been approved.",
+                    DateTime = DateTime.UtcNow,
+                    NotificationTypeId = 2, // Approval type
+                    Status = 0 // Unread
+                };
+                
+                _context.Notifications.Add(notification);
+                await _context.SaveChangesAsync();
+            }
 
             TempData["SuccessMessage"] = "Rental request approved successfully!";
             return RedirectToAction("Index");
@@ -203,7 +223,11 @@ namespace Rental.Controllers
         [HttpPost]
         public async Task<IActionResult> ConfirmPayment(int requestId)
         {
-            var rentalRequest = await _context.RentalRequests.FindAsync(requestId);
+            var rentalRequest = await _context.RentalRequests
+                .Include(r => r.User)
+                .Include(r => r.Equipment)
+                .FirstOrDefaultAsync(r => r.Id == requestId);
+                
             if (rentalRequest == null)
             {
                 TempData["ErrorMessage"] = "Rental request not found.";
@@ -215,6 +239,27 @@ namespace Rental.Controllers
             await _context.SaveChangesAsync();
 
             await SaveLogAsync("Payment Completed", $"Rental request {requestId} marked as paid.", "Web");
+            
+            // Send notification to admins and managers about the payment
+            var adminsAndManagers = await _context.Users
+                .Where(u => u.RoleId == 1 || u.RoleId == 2) // Admin (1) and Manager (2) roles
+                .ToListAsync();
+                
+            foreach (var admin in adminsAndManagers)
+            {
+                var notification = new Notification
+                {
+                    UserId = admin.Id,
+                    Message = $"Payment received for rental request #{requestId} - {rentalRequest.Equipment?.Name} by {rentalRequest.User?.Fname} {rentalRequest.User?.Lname}.",
+                    DateTime = DateTime.UtcNow,
+                    NotificationTypeId = 1, // Info type
+                    Status = 0 // Unread
+                };
+                
+                _context.Notifications.Add(notification);
+            }
+            
+            await _context.SaveChangesAsync();
 
             TempData["SuccessMessage"] = "Payment successful!";
             return RedirectToAction("Index");
@@ -238,7 +283,11 @@ namespace Rental.Controllers
         [HttpPost]
         public async Task<IActionResult> AdminApprove(int requestId)
         {
-            var request = await _context.RentalRequests.FindAsync(requestId);
+            var request = await _context.RentalRequests
+                .Include(r => r.User)
+                .Include(r => r.Equipment)
+                .FirstOrDefaultAsync(r => r.Id == requestId);
+                
             if (request == null)
             {
                 return NotFound();
@@ -246,6 +295,25 @@ namespace Rental.Controllers
 
             request.RentalStatus = 2; // Approved
             await _context.SaveChangesAsync();
+            
+            // Log the action
+            await SaveLogAsync("Admin Approve Rental Request", $"RequestID: {requestId} approved by admin", "Web");
+            
+            // Send notification to the user about their approved request
+            if (request.User != null)
+            {
+                var notification = new Notification
+                {
+                    UserId = request.UserId,
+                    Message = $"Your rental request for '{request.Equipment?.Name}' has been approved.",
+                    DateTime = DateTime.UtcNow,
+                    NotificationTypeId = 2, // Approval type
+                    Status = 0 // Unread
+                };
+                
+                _context.Notifications.Add(notification);
+                await _context.SaveChangesAsync();
+            }
 
             TempData["SuccessMessage"] = "Request approved successfully.";
             return RedirectToAction("UserRequests");
