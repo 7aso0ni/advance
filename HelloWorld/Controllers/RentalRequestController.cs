@@ -355,8 +355,8 @@ namespace Rental.Controllers
                     // Create a notification with a properly truncated message
                     await CreateRentalNotification(
                         request.UserId,
-                        $"Your rental request for '{request.Equipment?.Name}' has been approved.",
-                        2 // Approval type
+                        $"Your rental request for '{request.Equipment?.Name}' has been rejected.",
+                        3 // Rejection type
                     );
                 }
                 catch (Exception ex)
@@ -366,9 +366,9 @@ namespace Rental.Controllers
                 }
             }
 
-            TempData["SuccessMessage"] = "Request approved successfully.";
+            TempData["SuccessMessage"] = "Request rejected successfully.";
             
-            // Return to the same page without redirecting
+            // Return to the same page
             return RedirectToAction("UserRequests");
         }
 
