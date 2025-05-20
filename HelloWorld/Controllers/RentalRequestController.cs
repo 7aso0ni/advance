@@ -511,43 +511,96 @@ namespace Rental.Controllers
         {
             try
             {
+                Console.WriteLine($"Starting PayTransactionConfirmed for transaction ID: {transactionId}");
+                
                 // Load transaction
                 var transaction = await _context.RentalTransactions
                     .FirstOrDefaultAsync(t => t.Id == transactionId);
                     
                 if (transaction == null)
+                {
+                    Console.WriteLine("Transaction not found");
                     return NotFound("Transaction not found.");
+                }
+
+                Console.WriteLine($"Found transaction with ID: {transaction.Id}");
 
                 // Update transaction payment status
                 transaction.PaymentStatus = 2; // Mark as paid
+                Console.WriteLine("Updated transaction payment status to 2 (paid)");
                 
                 // Find rental requests that reference this transaction by ID
                 var linkedRequests = await _context.RentalRequests
                     .Where(r => r.RentalTransactionId == transactionId)
                     .ToListAsync();
+                
+                Console.WriteLine($"Found {linkedRequests.Count} linked rental requests");
                     
                 foreach (var request in linkedRequests)
                 {
+                    Console.WriteLine($"Processing rental request ID: {request.Id}");
                     request.RentalStatus = 8; // Update to Completed (Paid) status
+                    Console.WriteLine($"Updated rental request status to 8 (Completed/Paid)");
                     
-                    // Record the return date in the database
-                    var returnRecord = new ReturnRecord
+                    try
                     {
-                        RentalRequestId = request.Id,
-                        ActualReturnDate = DateTime.Now,
-                        Condition = "Good", // Default condition
-                        Notes = "Returned after payment",
-                        UserId = request.UserId
-                    };
-                    
-                    _context.ReturnRecords.Add(returnRecord);
+                        // First verify that the equipment and condition status exist
+                        var equipment = await _context.Equipment.FindAsync(request.EquipmentId);
+                        var conditionStatus = await _context.ConditionStatuses.FindAsync(1); // Good condition
+                        
+                        if (equipment == null)
+                        {
+                            Console.WriteLine($"Equipment with ID {request.EquipmentId} not found");
+                            continue; // Skip this record
+                        }
+                        
+                        if (conditionStatus == null)
+                        {
+                            Console.WriteLine("Condition status with ID 1 not found");
+                            continue; // Skip this record
+                        }
+                        
+                        // Record the return date in the database with proper foreign key relationships
+                        var returnRecord = new ReturnRecord
+                        {
+                            Equipment = request.EquipmentId,
+                            ReturnDate = DateTime.Now,
+                            Condition = 1, // Good condition
+                            LateFees = 0  // No late fees
+                        };
+                        
+                        Console.WriteLine($"Created return record for equipment ID: {returnRecord.Equipment}");
+                        
+                        // Explicitly set the navigation properties to satisfy constraints
+                        returnRecord.EquipmentNavigation = equipment;
+                        returnRecord.ConditionNavigation = conditionStatus;
+                        
+                        _context.ReturnRecords.Add(returnRecord);
+                        Console.WriteLine("Added return record to context");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error creating return record: {ex.Message}");
+                        Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                        
+                        if (ex.InnerException != null)
+                        {
+                            Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+                        }
+                        
+                        // Continue processing other requests instead of throwing
+                        continue;
+                    }
                 }
                 
                 // Save all changes
+                Console.WriteLine("Saving all changes to database...");
                 await _context.SaveChangesAsync();
+                Console.WriteLine("Successfully saved all changes to database");
                 
                 // Log the payment
                 await SaveLogAsync("Payment Completed", $"Transaction {transactionId} marked as paid with return records created.", "Web");
+                Console.WriteLine("Saved payment log");
                 
                 // Send notification about payment completion
                 if (linkedRequests.Any())
@@ -558,15 +611,24 @@ namespace Rental.Controllers
                         "Your payment has been processed and return records have been created.",
                         4 // Payment type
                     );
+                    Console.WriteLine($"Sent payment notification to user ID: {userId}");
                 }
 
                 TempData["SuccessMessage"] = "Payment successful! Return records have been created.";
+                Console.WriteLine("Payment process completed successfully");
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 // Log error
                 Console.WriteLine($"Error in PayTransactionConfirmed: {ex.Message}");
+                Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+                }
+                
                 TempData["ErrorMessage"] = "An error occurred while processing the payment.";
                 return RedirectToAction("Index");
             }
