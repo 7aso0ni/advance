@@ -102,50 +102,68 @@ namespace FormApp.Forms
         // inserting a new backup log
         private void LogBackup(int userId, string filePath)
         {
-            try
+            // Create a new context instance to avoid potential tracking issues
+            using (var newContext = new DBContext())
             {
-                var log = new Log
+                try
                 {
-                    UserId = userId,
-                    Action = "Performed Backup",
-                    TimeStamp = DateTime.Now,
-                    AffectedData = "Entire Database",
-                    Source = filePath
-                };
+                    var log = new Log
+                    {
+                        UserId = userId,
+                        Action = "Performed Backup",
+                        TimeStamp = DateTime.Now,
+                        AffectedData = "Entire Database",
+                        Source = filePath
+                    };
 
-                _context.Logs.Add(log);
-                _context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to log the backup:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    newContext.Logs.Add(log);
+                    newContext.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    // Log the error to console instead of showing to user
+                    Console.WriteLine($"Failed to log the backup: {ex.Message}");
+                    // Don't show error message to user
+                    // MessageBox.Show("Failed to log the backup:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         // filling the grid view with backup logs
         private void LoadBackupLogs()
         {
-            try
+            // Create a new context instance to avoid potential tracking issues
+            using (var newContext = new DBContext())
             {
-                var backupLogs = _context.Logs
-                    .Where(log => log.Action == "Performed Backup")
-                    .OrderByDescending(log => log.TimeStamp)
-                    .Select(log => new
-                    {
-                        log.Id,
-                        log.UserId,
-                        log.Action,
-                        log.TimeStamp,
-                        log.AffectedData,
-                        log.Source
-                    })
-                    .ToList();
+                try
+                {
+                    var backupLogs = newContext.Logs
+                        .Where(log => log.Action == "Performed Backup")
+                        .OrderByDescending(log => log.TimeStamp)
+                        .Select(log => new
+                        {
+                            log.Id,
+                            log.UserId,
+                            log.Action,
+                            log.TimeStamp,
+                            log.AffectedData,
+                            log.Source
+                        })
+                        .ToList();
 
-                gridBackupLogs.DataSource = backupLogs;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to load backup logs:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    gridBackupLogs.DataSource = backupLogs;
+                }
+                catch (Exception ex)
+                {
+                    // Log the error to console instead of showing to user
+                    Console.WriteLine($"Failed to load backup logs: {ex.Message}");
+                    
+                    // Don't show error message to user
+                    // MessageBox.Show("Failed to load backup logs:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                    // Set an empty data source to avoid binding errors
+                    gridBackupLogs.DataSource = new List<object>();
+                }
             }
         }
 
