@@ -506,9 +506,8 @@ namespace Rental.Controllers
         {
             try
             {
-                // Load transaction with related rental request
+                // Load transaction
                 var transaction = await _context.RentalTransactions
-                    .Include(t => t.RentalRequests)
                     .FirstOrDefaultAsync(t => t.Id == transactionId);
                     
                 if (transaction == null)
@@ -516,15 +515,6 @@ namespace Rental.Controllers
 
                 // Update transaction payment status
                 transaction.PaymentStatus = 2; // Mark as paid
-                
-                // Also update all related rental requests to status 8 (Completed/Paid)
-                if (transaction.RentalRequests != null)
-                {
-                    foreach (var request in transaction.RentalRequests)
-                    {
-                        request.RentalStatus = 8; // Update to Completed (Paid) status
-                    }
-                }
                 
                 // Find rental requests that reference this transaction by ID
                 var linkedRequests = await _context.RentalRequests
